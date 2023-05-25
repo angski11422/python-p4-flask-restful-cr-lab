@@ -27,12 +27,13 @@ class Plants(Resource):
         return response
     
     def post(self):
+        request = request.get_json()
         new_plant = Plant(
-            name = request.json.get('name'),
-            image = request.json.get('image'),
-            price = request.json.get('price'),
+            name = request['name'],
+            image = request['image'],
+            price = request['price'],
         )
-        
+        print(new_plant.to_dict())
         db.session.add(new_plant)
         db.session.commit()
 
